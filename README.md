@@ -28,7 +28,7 @@ magenta `#ff2a9d`, green `#1aff8c`.
 
 It installs the font, copies the background, drops the dynamic profile into
 `~/Library/Application Support/iTerm2/DynamicProfiles`, symlinks the zsh theme into
-`$ZSH_CUSTOM/themes`, and sets `ZSH_THEME="nova"` (backup: `~/.zshrc.bak`).
+`$ZSH_CUSTOM/themes`, and sets `ZSH_THEME="nova"` (original kept once as `~/.zshrc.pre-nova`).
 
 Then in iTerm2:
 

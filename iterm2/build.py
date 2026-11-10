@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Builds the iTerm2 colors + dynamic profile from the Herdr theme (herdr-theme.json).
 
-Usage: python3 iterm2/build.py [background-image-path]
-Writes iterm2/Nova.itermcolors and iterm2/nova.json.
+Usage: python3 iterm2/build.py [background-image-path [profile-out-path]]
+Writes iterm2/Nova.itermcolors, and the profile to profile-out-path
+(default iterm2/nova.json, which stays free of machine paths).
 """
 import json
 import plistlib
@@ -85,5 +86,6 @@ if len(sys.argv) > 1:
         "Blend": 0.25,  # skyline faint behind text, like Herdr panes
     })
 
-(HERE / "nova.json").write_text(json.dumps({"Profiles": [profile]}, indent=2) + "\n")
+out = Path(sys.argv[2]) if len(sys.argv) > 2 else HERE / "nova.json"
+out.write_text(json.dumps({"Profiles": [profile]}, indent=2) + "\n")
 print(f"Built {NAME}")

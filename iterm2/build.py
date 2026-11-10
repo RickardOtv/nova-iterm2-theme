@@ -2,8 +2,8 @@
 """Builds the iTerm2 colors + dynamic profile from the Herdr theme (herdr-theme.json).
 
 Usage: python3 iterm2/build.py [background-image-path [profile-out-path]]
-Writes iterm2/Nova.itermcolors, and the profile to profile-out-path
-(default iterm2/nova.json, which stays free of machine paths).
+No args: refreshes the committed iterm2/nova.json + iterm2/Nova.itermcolors
+(no background, no machine paths). With profile-out-path: writes only that file.
 """
 import json
 import plistlib
@@ -40,9 +40,6 @@ colors.update({
     "Underline Color": color(ui["input"]),
     "Tab Color": color(ui["chrome"]),
 })
-
-with open(HERE / f"{NAME}.itermcolors", "wb") as f:
-    plistlib.dump(colors, f)
 
 profile = {
     "Name": NAME,
@@ -86,6 +83,13 @@ if len(sys.argv) > 1:
         "Blend": 0.25,  # skyline faint behind text, like Herdr panes
     })
 
-out = Path(sys.argv[2]) if len(sys.argv) > 2 else HERE / "nova.json"
-out.write_text(json.dumps({"Profiles": [profile]}, indent=2) + "\n")
+text = json.dumps({"Profiles": [profile]}, indent=2) + "\n"
+if len(sys.argv) > 2:
+    # Install: write only the profile, never touch repo files.
+    Path(sys.argv[2]).write_text(text)
+else:
+    # Repo build: refresh the committed files.
+    (HERE / "nova.json").write_text(text)
+    with open(HERE / f"{NAME}.itermcolors", "wb") as f:
+        plistlib.dump(colors, f)
 print(f"Built {NAME}")

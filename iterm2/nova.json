@@ -1,10 +1,10 @@
 {
   "Profiles": [
     {
-      "Name": "Herdr Cyberpunk",
+      "Name": "Nova",
       "Guid": "6F1C3B0E-4E7A-4F8A-9D2C-3E5B7A1C0D42",
       "Tags": [
-        "herdr"
+        "nova"
       ],
       "Ansi 0 Color": {
         "Color Space": "sRGB",

@@ -1,4 +1,4 @@
-# Herdr Cyberpunk oh-my-zsh theme.
+# Nova oh-my-zsh theme.
 # Uses ANSI color names, so the exact hex comes from the terminal palette
 # (iTerm2 profile here, cyberpunk theme in Herdr): cyan #00f0ff, magenta #ff2a9d,
 # yellow #fcee0a, red #ff003c.

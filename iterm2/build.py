@@ -2,7 +2,7 @@
 """Builds the iTerm2 colors + dynamic profile from the Herdr theme (herdr-theme.json).
 
 Usage: python3 iterm2/build.py [background-image-path]
-Writes iterm2/Herdr Cyberpunk.itermcolors and iterm2/herdr-cyberpunk.json.
+Writes iterm2/Nova.itermcolors and iterm2/nova.json.
 """
 import json
 import plistlib
@@ -10,7 +10,7 @@ import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-NAME = "Herdr Cyberpunk"
+NAME = "Nova"
 GUID = "6F1C3B0E-4E7A-4F8A-9D2C-3E5B7A1C0D42"
 
 theme = json.loads((HERE / "herdr-theme.json").read_text())
@@ -46,7 +46,7 @@ with open(HERE / f"{NAME}.itermcolors", "wb") as f:
 profile = {
     "Name": NAME,
     "Guid": GUID,
-    "Tags": ["herdr"],
+    "Tags": ["nova"],
     **colors,
     "Use Tab Color": True,
     "Use Separate Colors for Light and Dark Mode": False,
@@ -85,5 +85,5 @@ if len(sys.argv) > 1:
         "Blend": 0.25,  # skyline faint behind text, like Herdr panes
     })
 
-(HERE / "herdr-cyberpunk.json").write_text(json.dumps({"Profiles": [profile]}, indent=2) + "\n")
+(HERE / "nova.json").write_text(json.dumps({"Profiles": [profile]}, indent=2) + "\n")
 print(f"Built {NAME}")

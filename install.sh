@@ -25,7 +25,7 @@ mkdir -p "$ZC/themes"
 ln -sf "$REPO/zsh/nova.zsh-theme" "$ZC/themes/nova.zsh-theme"
 if grep -q '^ZSH_THEME=' ~/.zshrc; then
   [ -e ~/.zshrc.pre-nova ] || cp ~/.zshrc ~/.zshrc.pre-nova
-  # Write back through cat (not sed -i) so a symlinked ~/.zshrc stays a symlink.
+  # Write back with a redirect (not sed -i) so a symlinked ~/.zshrc stays a symlink.
   NEW=$(sed 's/^ZSH_THEME=.*/ZSH_THEME="nova"/' ~/.zshrc)
   printf '%s\n' "$NEW" > ~/.zshrc
 else
